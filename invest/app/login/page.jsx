@@ -21,7 +21,7 @@ export default function page() {
         <span className='font-[900] text-2xl text-[#eee]'>4Elevenfxtrade</span>
       </Link>
 
-      <div className='w-full sm:w-[500px] sm:rounded-lg max-sm:rounded-[30px] grid grid-cols-1 max-sm:rounded-bl-none max-sm:rounded-br-none bg-[#000000d5] p-10 gap-5'>
+      <div className='w-full sm:w-[500px] sm:rounded-lg max-sm:rounded-[30px] grid grid-cols-1 max-sm:rounded-bl-none max-sm:rounded-br-none bg-[#00000073] p-10 gap-5'>
      <div className='flex max-sm:flex-col sm:justify-between w-full max-sm:items-center py-5 gap-5'>
       <h1 className='text-xl font-bold text-[#eee]'>Sign In </h1>
       <div className='text-col text-lg font-bold opacity-[.9]'>..Earn on the go</div>
