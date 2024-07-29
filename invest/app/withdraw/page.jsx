@@ -14,7 +14,7 @@ export default function page() {
   return (
     <div className='flex w-full'>
       <Sidebar title='withdraw'/>
-      <div className='w-full'>
+      <div className='w-full mb-20'>
       <Topbar title='withdraw'/>
       <div className='p-5 flex flex-col max-sm:items-center gap-5'>
         <div className='w-full font-bold text-5xl max-sm:text-center'>$<CountUp start={0} end={5030020} duration={2} separator=","/></div>
