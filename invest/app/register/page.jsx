@@ -44,7 +44,7 @@ export default function page() {
       }
 
   return (
-    <div className='h-screen w-full relative bg-cover bg-no-repeat flex flex-col justify-center items-center max-sm:justify-end sm:p-10 bg-blend-darken bg-[#00000073]' style={{backgroundImage: `url('about2.jpg')`}}>
+    <div className='h-screen w-full relative bg-cover bg-no-repeat flex flex-col justify-center items-center max-sm:justify-end sm:p-10 bg-blend-darken bg-[#000000b0]' style={{backgroundImage: `url('about2.jpg')`}}>
        <Link href={'/'} className='flex gap-3 items-center justify-center absolute top-5'>
         <img src="logo.png" alt="logo" className='w-10 h-auto rounded-full logo-glow' />
         <span className='font-[900] text-2xl text-[#eee]'>4Elevenfxtrade</span>
