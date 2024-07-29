@@ -49,7 +49,7 @@ export default function page() {
   return (
     <div className='flex w-full'>
       <Sidebar title='currents'/>
-      <div className='w-full'>
+      <div className='w-full mb-20'>
       <Topbar title='currents'/>
       <div className='w-full p-5'>
         <div className='px-5 rounded-lg bg-[#0a0c0c] hover:bg-[#00eaff10] flex items-center gap-5 max-sm:w-full w-[300px] text-[#eee] '>
