@@ -14,18 +14,22 @@ export default function page() {
       window.location.href='/login';
     }
 
-    useEffect(() => {
-        const fetchCountries = async () => {
-          try {
-            const response = await axios.get('https://restcountries.com/v3.1/all');   
-            setCountries(response.data)
-          } catch (error) {
-            console.error('Error fetching countries:', error);
-          }
-        };
-    
-        fetchCountries();
-      }, []);
+     useEffect(() => {
+      const fetchCountries = async () => {
+        try {
+          const response = await axios.get('https://restcountries.com/v3.1/all');
+          const sortedCountries = response.data.sort((a,   
+   b) => {
+            return a.name.common.toLowerCase().localeCompare(b.name.common.toLowerCase());
+          });
+          setCountries(sortedCountries);
+        } catch (error) {
+          console.error('Error fetching countries:', error);
+        }
+      };
+  
+      fetchCountries();
+    }, []);
     
       const handleCountryChange = (event) => {
         setSelectedCountry(event.target.value);
