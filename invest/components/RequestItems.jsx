@@ -10,13 +10,13 @@ export default function RequestItems({plan, status,amount,date}) {
     useEffect(()=>{
         if(status==='approved'){
             setBgCol("bg-[#00ffff03]");
-            setTxtCol("text-[#00ffff30]");
+            setTxtCol("text-[#00ffff80]");
         }else if(status==='pending'){
              setBgCol("bg-[#ffff0003]");
-             setTxtCol("text-[#ffff0030]");
+             setTxtCol("text-[#ffff0080]");
         }else if(status==='failed'){
             setBgCol("bg-[#ff00ff03]");
-            setTxtCol("text-[#ff00ff30]");
+            setTxtCol("text-[#ff00ff80]");
         }
     },[])
   return (
