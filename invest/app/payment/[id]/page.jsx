@@ -1,113 +1,95 @@
 'use client'
-import Sidebar from "@/components/Sidebar";
-import Topbar from "@/components/Topbar";
-import { useEffect, useState } from "react";
-import { IoCopy } from "react-icons/io5";
-import { PiUploadFill } from "react-icons/pi";
+import axios from 'axios';
+import Link from 'next/link'
+import React, { useEffect, useState } from 'react'
+import { IoEye } from "react-icons/io5";
+import { IoEyeOff } from "react-icons/io5";
 
-
-export default function page({params}) {
-    const [selectMethod, setSelectMethod] = useState('');
-    const [copied, setCopied] = useState(false);
-    const [isBNB, setIsBNB] = useState(false);
-    const [isBTC, setIsBTC] = useState(false);
-    const [isUpld, setIsUpld] = useState(false);
-    const [file, setFile] = useState(null);
-    const [selectedPlan, setSelectedPlan] = useState({});
-    const planName = params.id;
-
-    const plans = [
-      {name: 'diamond', rate:'7% Weekly'},
-      {name: 'silver', rate:'5% Weekly'},
-      {name: 'gold', rate:'9% Weekly'},
-      {name: 'generational', rate:'12% Weekly'},
-    ]
-
-    useEffect(()=>{
-      setSelectedPlan(plans.filter(p=> p.name === planName)[0]);
-    },[]);
-
-    const handlePayment = () => {
-      windows.location.href='/invest';
+export default function page() {
+  document.title='Register - 4Elevenfxtrade';
+    const [countries, setCountries] = useState([]);
+    const [selectedCountry, setSelectedCountry] = useState('');
+    const [selectedCode, setSelectedCode] = useState('');
+    const [isView, setIsView] = useState(false);
+    const handleRegister = ()=> {
+      window.location.href='/login';
     }
 
-    const handleCopy = () => {
-        const textToCopy = document.querySelector(".copy-text").textContent;
-        navigator.clipboard.writeText(textToCopy).then(() => {
-          setCopied(true);
-          setTimeout(() => setCopied(false), 2000);
-        });
-      };
-
-      const handleCopyI = () => {
-        const textToCopy = document.querySelector(".copy-textI").textContent;
-        navigator.clipboard.writeText(textToCopy).then(() => {
-          setCopied(true);
-          setTimeout(() => setCopied(false), 2000);
-        });
-      };
-
-    const handleChange = (e)=> {
-       setSelectMethod(e.target.value)
-    }
-
-    const handleUpload = (e)=>{
-        setFile(e.target.files[0]);
-    }
-
-    useEffect(()=>{
-        if(selectMethod==='BTC TRC 20'){
-            setIsBNB(false);
-            setIsBTC(true);
-            setIsUpld(true);
-        }else if(selectMethod==='BNB'){
-            setIsBNB(true);
-            setIsBTC(false);
-            setIsUpld(true);
-        }else{
-            setIsBNB(false);
-            setIsBTC(false);
-            setIsUpld(false);
+  
+    useEffect(() => {
+      const fetchCountries = async () => {
+        try {
+          const response = await axios.get('https://restcountries.com/v3.1/all');
+          const sortedCountries = response.data.sort((a,   
+   b) => {
+            return a.name.common.toLowerCase().localeCompare(b.name.common.toLowerCase());
+          });
+          setCountries(sortedCountries);
+        } catch (error) {
+          console.error('Error fetching countries:', error);
         }
-    },[selectMethod])
+      };
+  
+      fetchCountries();
+    }, []);
+    
+      const handleCountryChange = (event) => {
+        setSelectedCountry(event.target.value);
+      };
+
+      const handleCodeChange = (event) => {
+        setSelectedCode(event.target.value);
+      };
+
+      const toggleView = () => {
+        setIsView(!isView)
+      }
 
   return (
-    <div className='flex w-full'>
-      <Sidebar title='invest'/>
-      <div className='w-full mb-20'>
-      <Topbar title='invest'/>
-      <div className='flex flex-col p-5 gap-2 max-sm:items-center'>
-        <h1 className='text-2xl w-full max-sm:text-center capitalize'>{selectedPlan.name}</h1>
-        <h2 className='text-col font-bold w-full max-sm:text-center mt-10'>{`Start earning on an interest rate of up ${selectedPlan.rate}`}</h2>
-        <select onChange={handleChange} value={selectMethod} name="" id="" className="bg-transparent mt-5 outline-none p-5 border border-[#00eaff0a] rounded-lg">
-            <option value="Choose payment method" className="p-2 text-[#a2a1ab]">Choose payment method</option>
-            <option value="BTC TRC 20" className="p-2 text-[#a2a1ab]">BTC TRC 20</option>
-            <option value="BNB" className="p-2 text-[#a2a1ab]">BNB</option>
-        </select>
-       {isBTC && <div className="p-5 rounded-lg relative bg-[#00eaff0a] w-[300px] flex gap-2 justify-between items-center"><span className="copy-text font-[200]">jiruwr90fhcnew9uerqu90wef</span> <IoCopy onClick={handleCopy} className="text-3xl text-[#00eaff75] cursor-pointer"/>
-        {copied && (
-            <div className="absolute bottom-0 right-0 p-2 text-black font-bold bg-[#00eaffb0] rounded-lg">
-              Copied!
-            </div>
-          )}
-        </div>}
-        {isBNB && <div className="p-5 rounded-lg relative bg-[#00eaff0a] w-[300px] flex gap-2 items-center"><span className="copy-textI font-[200]">8E8E8DH0hshhddhHS8bHHHHH</span> <IoCopy onClick={handleCopyI} className="text-3xl text-[#00eaff75] cursor-pointer"/>
-        {copied && (
-            <div className="absolute bottom-0 right-0 p-2 text-black font-bold bg-[#00eaffb0] rounded-lg">
-              Copied!
-            </div>
-          )}
-        </div>}
-        {isUpld && <div className="w-full mt-5 flex flex-col max-sm:items-center">
-            <h1 className="text-sm max-sm:w-full max-sm:text-center">We are ensuring security and safe processes , please drop a screenshot of proof of payment</h1>
-            <input onChange={handleUpload} type="file" id='upload' accept="image/*" className=" hidden"/>
-            <label htmlFor="upload" className="flex justify-center items-center w-[300px] py-5 rounded-lg mt-5 border border-[#00eaff15] animate-pulse">
-              <PiUploadFill className="text-5xl"/></label>
-            </div>}
-            {file && <img src={URL.createObjectURL(file)} alt="Selected image" className="w-[300px] rounded-lg h-auto object-contain"/>}
-           {file && <button onClick={handlePayment} className="mt-5 bg-col py-5 w-[300px] hover:opacity-[.8] text-black font-bold rounded-lg">Done</button>}
-      </div>
+    <div className='h-screen w-full relative bg-cover bg-no-repeat flex flex-col justify-center items-center max-sm:justify-end sm:p-10 bg-blend-darken bg-[#000000b0]' style={{backgroundImage: `url('about2.jpg')`}}>
+       <Link href={'/'} className='flex gap-3 items-center justify-center absolute top-5'>
+        <img src="logo.png" alt="logo" className='w-10 h-auto rounded-full logo-glow' />
+        <span className='font-[900] text-2xl text-[#eee]'>4Elevenfxtrade</span>
+      </Link>
 
+      <div className='w-full sm:w-[500px] sm:rounded-lg max-sm:rounded-[30px] grid grid-cols-1 max-sm:rounded-bl-none max-sm:rounded-br-none bg-[#00000073] backdrop-blur-sm p-10 gap-5'>
+     <div className='flex max-sm:flex-col sm:justify-between w-full max-sm:items-center py-5 gap-5'>
+      <h1 className='text-xl font-bold text-[#eee]'>Sign Up </h1>
+      <div className='text-col text-lg font-bold opacity-[.9]'>..Get started investing</div>
+      </div>
+       <div className='grid grid-cols-2 max-sm:grid-cols-1 w-full gap-5'>
+        <input type="text" placeholder='Username' maxLength={20} className='bg-transparent outline-none placeholder:text-[#a2a1ab] p-3 border border-[#00eaff13] rounded-lg'/>
+        <select className='bg-transparent outline-none text-[#a2a1ab] p-3 border border-[#00eaff13] rounded-lg' name="" id="" value={selectedCountry || "Select Country"} onChange={handleCountryChange}>
+       <option value="Select Country">Select Country</option>
+        {countries?.length > 0 && countries.map((country) => (
+          <option key={country.name.common}
+           value={country.name.common}>
+            {country.name.common}
+          </option>
+        ))}
+       </select> 
+       </div>
+       <div className='grid grid-cols-2 max-sm:grid-cols-1 w-full gap-5'>
+        <input type="email" placeholder='Email' maxLength={100} className='bg-transparent outline-none placeholder:text-[#a2a1ab]  p-3 border border-[#00eaff13] rounded-lg'/>
+       <div className='flex items-center  p-3 border border-[#00eaff13] rounded-lg'>
+       <select className='bg-transparent outline-none text-[#a2a1ab]' name="" id="" value={selectedCode || "Code"} onChange={handleCodeChange}>
+       <option value="Code">Code</option>
+        {countries?.length > 0 && countries.map((country) => (
+          <option key={country.name.common}
+           value={country.ccn3}>
+            {country.ccn3}
+          </option>
+        ))}
+       </select> 
+       <input maxLength={11} type="number" placeholder='Phone' className='bg-transparent w-full outline-none placeholder:text-[#a2a1ab]'/>
+       </div>
+       </div>
+       <div className='flex items-center w-full justify-between  p-3 border border-[#00eaff13] rounded-lg'>
+       <input type={isView? 'text' : 'password'} maxLength={16} placeholder='Password' className='w-full bg-transparent outline-none placeholder:text-[#a2a1ab]'/>
+        {isView? <IoEyeOff onClick={toggleView}/> : <IoEye onClick={toggleView}/>}
+       </div>
+       <button onClick={handleRegister} className=' flex justify-center items-center w-full h-12 rounded-lg bg-col hover:opacity-75 text-black text-sm font-bold'>Sign Up</button>
+       <p className='flex gap-2 text-sm py-5 items-center w-full justify-center font-extralight text-[#a2a1ab]'>Already have an account? <Link className='text-[#eee] hover:text-[#00eaff]' href={'login'}>Login</Link></p>
       </div>
     </div>
   )
