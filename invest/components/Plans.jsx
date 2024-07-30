@@ -12,7 +12,7 @@ export default function Plans() {
       </div>
       <div className='grid sm:grid-cols-2 grid-cols-1 gap-10 xl:grid-cols-3 2xl:grid-cols-4'>
         <div className='flex flex-col shadow-glow-mild rounded-lg w-full h-[500px] justify-center items-center gap-5 p-4'>
-           <div className='text-2xl font-bold text-center w-full'>Silver Plan</div>
+           <div className='text-2xl font-bold text-center w-full'>College Plan</div>
            <div className='text-3xl font-bold text-center w-full text-col '>5% Weekly ROI</div>
            <div className='flex gap-2 items-center  w-full'>
             <TiTickOutline className='text-[#00eaff]'/>
@@ -27,7 +27,7 @@ export default function Plans() {
    
         </div>
         <div className='flex flex-col bg-col rounded-lg w-full h-[500px] justify-center items-center gap-5 p-4 opacity-[.9]'>
-           <div className='text-2xl font-bold text-center w-full text-[#000]'>Generational Plan</div>
+           <div className='text-2xl font-bold text-center w-full text-[#000]'>Retirement Plan</div>
            <div className='text-3xl font-bold text-center w-full text-[#ffffffef]'>12% Weekly ROI</div>
            <div className='flex gap-2 items-center  w-full'>
             <TiTickOutline className='text-[#000000]'/>
@@ -42,7 +42,7 @@ export default function Plans() {
    
         </div>
         <div className='flex flex-col shadow-glow-mild rounded-lg w-full h-[500px] justify-center items-center gap-5 p-4'>
-           <div className='text-2xl font-bold text-center w-full'>Gold Plan</div>
+           <div className='text-2xl font-bold text-center w-full'>Platinium Plan</div>
            <div className='text-3xl font-bold text-center w-full text-col '>9% Weekly ROI</div>
            <div className='flex gap-2 items-center  w-full'>
             <TiTickOutline className='text-[#00eaff]'/>
@@ -57,7 +57,7 @@ export default function Plans() {
    
         </div>
         <div className='flex flex-col shadow-glow-mild rounded-lg w-full h-[500px] justify-center items-center gap-5 p-4'>
-           <div className='text-2xl font-bold text-center w-full'>Diamond Plan</div>
+           <div className='text-2xl font-bold text-center w-full'>Workers Plan</div>
            <div className='text-3xl font-bold text-center w-full text-col '>7% Weekly ROI</div>
            <div className='flex gap-2 items-center  w-full'>
             <TiTickOutline className='text-[#00eaff]'/>
