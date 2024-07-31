@@ -78,19 +78,14 @@ export default function page() {
     <ContactUs/>
     </div>
     <Footer/>
-  //   {notifications.map((notification, index) => (
-  //   <div
-  //     key={index}
-  //     className={`fixed bottom-${5 + index * 5} left-2 p-4 rounded-lg bg-[#081314ce] backdrop-blur-md border border-[#fff1] text-[11px] animate-slide-in animate-duration-1000 w-[250px]`}
-  //   >
-  //     {notification?.type} of ${notification?.amount} from {notification?.address}
-  //   </div>
-  // ))}
-  <div
-      className={`fixed bottom-5 left-2 p-4 rounded-lg bg-[#081314ce] backdrop-blur-md border border-[#fff1] text-[11px] animate-slide-in animate-duration-1000 w-[250px]`}
+    {notifications.map((notification, index) => (
+    <div
+      key={index}
+      className={`fixed bottom-${5 + index * 5} z-20 left-2 p-4 rounded-lg bg-[#081314ce] backdrop-blur-md border border-[#fff1] text-[11px] animate-slide-in animate-duration-1000 w-[250px]`}
     >
       {notification?.type} of ${notification?.amount} from {notification?.address}
     </div>
+  ))}
     </div>
   )
 }
