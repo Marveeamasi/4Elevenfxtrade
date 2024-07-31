@@ -4,7 +4,7 @@ export default function Testimony({ data }) {
   return (
     <div className='w-full flex flex-col justify-center items-center p-4 sm:px-20 bg-[#00eaff05] gap-20 sm:gap-10 mt-20'>
       <div className=' flex flex-col gap-4 w-full items-center'>
-        <h1 className='text-3xl'>Recents transactions</h1>
+        <h1 className='text-3xl'>Recent transactions</h1>
         <hr className='w-10 bg-col h-1'/>
       </div>
       <div className='flex flex-col gap-1 w-full'>
